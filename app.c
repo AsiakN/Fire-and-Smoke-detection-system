@@ -1,5 +1,4 @@
 // Program for LCD Interfacing with 8051 Microcontroller (AT89S52) 
-
 #include<reg51.h>
 #define display_port P2      //Data pins connected to port 2 on microcontroller
 sbit rs = P3^2;  //RS pin connected to pin 2 of port 3
