@@ -1,2 +1,2 @@
 # Fire-and-Smoke-detection-system
-A system built an ATS8951
+A system built on ATS8951
