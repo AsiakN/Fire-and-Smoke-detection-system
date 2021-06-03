@@ -6,16 +6,18 @@ sbit rw = P3^3;  // RW pin connected to pin 3 of port 3
 sbit e =  P3^4;  //E pin connected to pin 4 of port 3
 sbit buzzer = P0^0; //buzzer connected to port 0 bit 0
 sbit fsensor = P1^6; //connection of flame sensor
-sbit motor = P1^7;   //motor connection
+sbit pump = P1^7;   //motor connection
 sbit gsensor = P1^4; //gas sensor connection
-sbit LED = P0^2;     //bulb connection
-
+sbit bulb = P0^2;     //bulb connection
+unsigned char *a;    //string of 14 characters with a null terminator.
+int n;
 void msdelay(unsigned int time)  // Function for creating delay in milliseconds.
 {
     unsigned i,j ;
     for(i=0;i<time;i++)    
     for(j=0;j<1275;j++);
 }
+
 void lcd_cmd(unsigned char command)  //Function to send command instruction to LCD
 {
     display_port = command;
@@ -25,6 +27,14 @@ void lcd_cmd(unsigned char command)  //Function to send command instruction to L
     msdelay(1);
     e=0;
 }
+
+void lcd_string(char *s)
+{
+    while(*s) {
+       lcd_cmd(*s++);
+     }
+}
+ 
 
 void lcd_data(unsigned char disp_data)  //Function to send display data to LCD
 {
@@ -50,15 +60,15 @@ void lcd_data(unsigned char disp_data)  //Function to send display data to LCD
  
 void flame_detection() //function  for flame detection
 {
-        if(fsensor) {
-            cmd(0xc0);
+        if(fsensor == 1) {
+            lcd_cmd(0xc0);
             lcd_string("Smoke and Fire Detected");
-            delay();
+            msdelay(100);
             buzzer = 1;//call the buzzer function
             pump = 1;   //call the turn on pump function
             bulb = 1;    //call the turn on bulb function  
         } else {
-            cmd(0xc0);
+            lcd_cmd(0xc0);
             lcd_string("                ");
         }
 
@@ -66,31 +76,31 @@ void flame_detection() //function  for flame detection
 
 void smoke_detection(){
     if (gsensor==1){
-        cmd(0xc0);
+        lcd_cmd(0xc0);
             lcd_string("smoke Detected");
-            delay();
+            msdelay(100);
             buzzer = 1;
             pump = 1; 
         } else {
             buzzer = 0;
             pump = 0;
-            cmd(0xc0);
+            lcd_cmd(0xc0);
             lcd_string("                ");
         }
  }
 
 void main()
 {
-    buzzer = 0
-    fsensor = 0
-    gsensor = 0
-    unsigned char a[17]="Welcome";    //string of 14 characters with a null terminator.
-    int l = 0;
+    buzzer = 0;
+    fsensor = 0;
+    gsensor = 0;
+    a[10]="Welcome";    //string of 14 characters with a null terminator.
+    n = 0;
     lcd_init();
-    while(a[l] != '\0') // searching the null terminator in the sentence
+    while(a[n] != '\0') // searching the null terminator in the sentence
     {
-        lcd_data(a[l]);
-        l++ ;
+        lcd_data(a[n]);
+        n++ ;
         msdelay(50);
     }
     while(1){
@@ -99,4 +109,5 @@ void main()
     }
 }
 
+ 
  
