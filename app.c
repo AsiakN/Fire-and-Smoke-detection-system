@@ -1,5 +1,5 @@
 // Program for LCD Interfacing with 8051 Microcontroller (AT89S52) 
-#include "reg51.h"
+#include <reg51.h>
 #define lcd P2      //Data pins connected to port 2 on microcontroller
 sbit rs = P3^2;  //RS pin connected to pin 2 of port 3
 sbit rw = P3^3;  // RW pin connected to pin 3 of port 3
@@ -53,7 +53,7 @@ void lcd_string(char *s)
     msdelay(5);
     lcd_cmd(0x01);  //clear screen
     msdelay(5);
-    lcd_cmd(0x81);  // bring cursor to position 1 of line 1
+    lcd_cmd(0x80);  // bring cursor to position 1 of line 1
     msdelay(5);
 }
  
