@@ -1,9 +1,9 @@
 #include <reg51.h>
 #define lcd P2
 
-sbit rw = P3 ^ 2;
-sbit rs = P3 ^ 3;
-sbit en = P3 ^ 4;
+sbit rw = P0 ^ 6;
+sbit rs = P0 ^ 5;
+sbit en = P0 ^ 7;
 
 void delay(unsigned int time){
     for (int i = 0; i < time; i++)

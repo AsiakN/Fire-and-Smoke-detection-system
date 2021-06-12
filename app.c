@@ -1,14 +1,14 @@
 // Program for LCD Interfacing with 8051 Microcontroller (AT89S52) 
 #include <reg51.h>
 #define lcd P2      //Data pins connected to port 2 on microcontroller
-sbit rs = P3^2;  //RS pin connected to pin 2 of port 3
-sbit rw = P3^3;  // RW pin connected to pin 3 of port 3
-sbit e =  P3^4;  //E pin connected to pin 4 of port 3
-sbit buzzer = P0^0; //buzzer connected to port 0 bit 0
-sbit fsensor = P1^6; //connection of flame sensor
-sbit pump = P1^7;   //motor connection
-sbit gsensor = P1^4; //gas sensor connection
-sbit bulb = P0^2;     //bulb connection
+sbit rs = P0^5;  //RS pin connected to pin 2 of port 3
+sbit rw = P0^6;  // RW pin connected to pin 3 of port 3
+sbit e =  P0^7;  //E pin connected to pin 4 of port 3
+sbit buzzer = P0^3; //buzzer connected to port 0 bit 0
+sbit fsensor = P1^0; //connection of flame sensor
+sbit pump = P0^4;   //motor connection
+sbit gsensor = P1^2; //gas sensor connection
+sbit bulb = P0^1;     //bulb connection
 unsigned char a[10]= "Welcome";    //string of 14 characters with a null terminator.
 int n;
 void msdelay(unsigned int time)  // Function for creating delay in milliseconds.
