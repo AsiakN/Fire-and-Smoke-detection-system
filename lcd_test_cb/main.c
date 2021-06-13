@@ -1,3 +1,8 @@
+/*
+ */
+
+#include <mcs51/8051.h>
+
 #include <reg51.h>
 #define lcd P2
 
@@ -13,9 +18,9 @@ void delay(unsigned int time){
 }
 
 void lcd_cmd (unsigned char cmd){
-    lcd = cmd; 
+    lcd = cmd;
     rs = 0;
-    rw = 0; 
+    rw = 0;
     en = 1;
     delay(10);
     en = 0;
