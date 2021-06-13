@@ -4,7 +4,7 @@
 sbit rs = P0^5;  //RS pin connected to pin 2 of port 3
 sbit rw = P0^6;  // RW pin connected to pin 3 of port 3
 sbit e =  P0^7;  //E pin connected to pin 4 of port 3
-sbit buzzer = P0^3; //buzzer connected to port 0 bit 0
+sbit buzzer = P1^3; //buzzer connected to port 0 bit 0
 sbit fsensor = P1^0; //connection of flame sensor
 sbit pump = P0^4;   //motor connection
 sbit gsensor = P1^2; //gas sensor connection

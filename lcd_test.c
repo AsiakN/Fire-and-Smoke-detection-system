@@ -17,8 +17,8 @@ void lcd_cmd (unsigned char cmd){
     rs = 0;
     rw = 0; 
     en = 1;
-    delay(1);
-    en = 1;
+    delay(10);
+    en = 0;
 }
 
 void lcd_init(){
@@ -44,6 +44,7 @@ void lcd_string(char *s){
 }
 void main(){
     lcd_init();
+    while(1){
     lcd_string("Academic City");
     lcd_cmd(0xc0);
     lcd_string("presents");
@@ -51,6 +52,5 @@ void main(){
     lcd_cmd(0x01);
     lcd_cmd(0x80);
     lcd_string("Fire and Smoke");
-    while(1)
-        ;
+    }
 }
